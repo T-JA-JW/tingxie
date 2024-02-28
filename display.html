@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dictation Practice by T JA</title>
+</head>
+<body>
+<h1>Input Chinese words (line-separated)</h1>
+<form method="post">
+    <textarea name="words" rows="10" cols="30">{{ words|join('\n') }}</textarea><br>
+    <input type="submit" value="Submit Words">
+</form>
+<button onclick="playRandomWord()">Pronounce Random Word</button>
+<script>
+async function playRandomWord() {
+    try {
+        const response = await fetch('/get-word');
+        if (!response.ok) {
+            throw new Error('No words provided or error fetching word.');
+        }
+        const data = await response.json();
+        const word = data.word;
+        // Use Web Speech API to speak the word
+        const utterance = new SpeechSynthesisUtterance(word);
+        speechSynthesis.speak(utterance);
+    } catch (error) {
+        alert(error.message);
+    }
+}
+</script>
+</body>
+</html>
