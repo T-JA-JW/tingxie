@@ -5,12 +5,12 @@
     <title>Dictation Practice by T JA</title>
 </head>
 <body>
-<h1>Input Chinese words (line-separated)</h1>
+<h1>Automatic Dictation (听写）</h1>
 <form method="post">
     <textarea name="words" rows="10" cols="30">{{ words|join('\n') }}</textarea><br>
     <input type="submit" value="Submit Words">
 </form>
-<button onclick="playRandomWord()">Pronounce Random Word</button>
+<button onclick="playRandomWord()">Start Dictation</button>
 <script>
 async function playRandomWord() {
     try {
